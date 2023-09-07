@@ -41,5 +41,43 @@ class TestMatrizOperations(unittest.TestCase):
     def test_conjugada(self):
         self.assertEqual(mat.conjugada([[-4,8.3],[12,0]]),([[-4, 8.3], [12, 0]]))
 
+    def test_adjunta(self):
+        self.assertEqual(mat.adjunta([[-4,8.3],[12,0]]),([[-4, 12], [8.3, 0]]))
+    def test_adjunta(self):
+        self.assertEqual(mat.adjunta([[9+1j, 16-9j], [-1j, 7+7j]]),([[(9-1j), (-0+1j)], [(16+9j), (7-7j)]]))
+
+    def test_prod_interno(self):
+        v1 = [-9 + 3j, 50+6j, 8, 3j]
+        v2= [3j, 17 - 9j, 8j, 1j]
+        esperada = 808-515j
+        actual  = mat.prod_interno(v1, v2)
+        self.assertEqual(actual, esperada)
+
+    def test_prod_de_matriz(self):
+        m1 = [[9,-1],[0,11.3]]
+        m2 = [[-3.4,14.3],[13,2]]
+        esperada = [[-43.599999999999994, 22.6], [-43.599999999999994, 22.6]]
+        actual = mat.prod_de_matz(m1, m2)
+        self.assertEqual(actual, esperada)
+
+    def test_vectornormal(self):
+        v1 = [-9 + 3j, 50+6j, 8, 3j]
+        esperada = 51.95
+        actual = mat.vectornormal(v1)
+        self.assertEqual(actual, esperada)
+
+    def test_distancia(self):
+        v1 = [8j, 4-10j, 4+2j, 55j]
+        v2 = [2j, 4, 6-7j,5]
+        esperada = 57.19
+        actual = mat.distancia(v1,v2)
+        self.assertEqual(actual, esperada)
+
+    def test_vectores_prop(self):
+        m1 =[[-4,8.3],[12,0]]
+        esperada = "valores: [-12.18   8.18]. vectores: [-0.71230502  0.70187005]"
+        actual = mat. vectores_prop(m1)
+        self.assertEqual(actual, esperada)
+
 if __name__ == '__main__':
     unittest.main()
