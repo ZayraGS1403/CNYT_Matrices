@@ -126,3 +126,51 @@ def vectores_prop(m1):
         return  "valores: {}. vectores: {}".format(valor, vecto[0])
     else:
         return "Intoduzca una matrz cuadrada"
+
+def unitario(m1):
+    if len(m1) == len(m1[0]):
+            adjunt = adjunta(m1)
+            comp = prod_de_matz(m1, adjunt)
+            verifi = True
+            for i in range(len(comp)):
+                for j in range(len(comp)):
+                    if (i == j and comp[i][j] != 1) or (i != j and comp[i][j] != 0):
+                        verifi = False
+                        break
+            if verifi:
+                resp = "Es unitaria la matriz"
+            else:
+                resp = "NO es unitaria la matriz "
+    else:
+        resp = "Matriz incorrecta de tamaño"
+    return resp
+
+def hermitiana(m1):
+    if len(m1) == len(m1[0]):
+            adjunt = adjunta(m1)
+            verifi = True
+            for i in range(len(adjunt)):
+                for j in range(len(adjunt)):
+                    if m1[i][j] != adjunt[i][j]:
+                        verifi = False
+                        break
+            if verifi:
+                resp = "Es hermitiana"
+            else:
+                resp = "NO es hermitiana"
+    else:
+        resp = "Tamaño de matriz incorrecto"
+    return resp
+
+def tensor(m1, m2):
+    m = len(m1)
+    n = len(m2)
+    m_1 = len(m1[0])
+    n_1 = len(m2[0])
+    fil = m*n
+    col = m_1*n_1
+    result = [[0 for j in range(col)] for k in range(fil)]
+    for j in range(fil):
+        for k in range(col):
+            result[j][k] = (m1[j // n][k // n_1]) * (m2[j % n][k % n_1])
+    return result
