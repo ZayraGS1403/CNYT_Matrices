@@ -66,6 +66,12 @@ class TestMatrizOperations(unittest.TestCase):
         actual = mat.vectornormal(v1)
         self.assertEqual(actual, esperada)
 
+    def test_unitaria(self):
+        m1 = [[2 / 3, (-2 + 1j) / 3], [(2 + 1j) / 3, 2 / 3]]
+        esperada = "La matriz es unitaria"
+        actual = mat.unitario(m1)
+        self.assertEqual(actual, esperada)
+
     def test_distancia(self):
         v1 = [8j, 4-10j, 4+2j, 55j]
         v2 = [2j, 4, 6-7j,5]
@@ -73,10 +79,24 @@ class TestMatrizOperations(unittest.TestCase):
         actual = mat.distancia(v1,v2)
         self.assertEqual(actual, esperada)
 
+    def test_tensor(self):
+        m1 = [[2, 3], [1, 4]]
+        m2 = [[5, 3, 2], [1, 0, 2], [-2, 5, 6]]
+        esperada = [[10, 6, 4, 15, 9, 6], [2, 0, 4, 3, 0, 6], [-4, 10, 12, -6, 15, 18], [5, 3, 2, 20, 12, 8],
+                    [1, 0, 2, 4, 0, 8], [-2, 5, 6, -8, 20, 24]]
+        actual = mat.tensor(m1, m2)
+        self.assertEqual(actual, esperada)
+
     def test_vectores_prop(self):
         m1 =[[-4,8.3],[12,0]]
         esperada = "valores: [-12.18   8.18]. vectores: [-0.71230502  0.70187005]"
         actual = mat. vectores_prop(m1)
+        self.assertEqual(actual, esperada)
+
+    def test_hermitiana(self):
+        m1 = [[3, 2 - 1j, -5j], [2 + 1j, 0, 9 - 5j], [5j, 9 + 5j, 6]]
+        esperada = "La matriz es hermitiana"
+        actual = mat.hermitiana(m1)
         self.assertEqual(actual, esperada)
 
 if __name__ == '__main__':
